@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>音乐播放器</title>
+    <!-- 样式 -->
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 主体部分 -->
+        <div class="main">
+            <!-- 左边项目介绍栏 -->
+            <div class="introduce">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            功能点一：banner轮播图【点击展开】
+                          </button>
+                            </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                播放器页面的中上部显示轮播图，这是一个利用了BootStrap框架实现的动态轮播图效果，通过点击左右按键可进行动态切换轮播图，同时也可实现轮播图的自动切换播放效果
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            功能点二：歌曲搜索【点击展开】
+                          </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                通过右上方搜索框输入您喜欢的【歌手】或者【歌名】关键字，按下键盘【回车键】，便会在左下方歌曲列表展示栏展示出所有包含搜索关键字的歌曲 <br> 例如：搜索【周杰伦】，按下【回车键】，便会在歌曲列表中展示出周杰伦的所有歌曲；
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            功能点三：歌曲播放【点击展开】
+                          </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                1、播放歌曲：当完成搜索歌曲后，通过点击单曲左边的播放按钮，歌曲播放，同时中部区域会【显示相应的专辑封面图片并显示旋转动画】，右部显示相应的【歌曲评论信息】，且通过播放组件可实现音频的【在线下载】功能。<br>2、播放MV：当搜索歌曲后，部分单曲右部会显示MV视频图标，点击小图标，会弹出遮罩层，点击播放后会播放该视频的MV；再点击视频播放区域外的任意位置，即可退出MV播放；且通过播放组件可实现视频的【在线下载】和【画中画】功能
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右边音乐播放器区域 -->
+            <div class="play_wrap" id="player">
+                <div class="search_bar">
+                    <div class="logo">
+                        <img src="images/logo.jpg" alt="" />
+                    </div>
+                    <div class="caption">
+                        <h3>云村音乐播放器</h3>
+                    </div>
+                    <!-- 搜索歌曲 -->
+                    <input type="text" autocomplete="off" v-model="query" @keyup.enter="searchMusic" />
+                </div>
+                <!-- banner轮播图 -->
+                <div class="banner">
+                    <div class="rotation">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="upload/banner01.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="upload/banner02.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="upload/banner03.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="upload/banner04.jpg" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="center_con">
+                    <!-- 搜索歌曲列表 -->
+                    <div class='song_wrapper' ref='song_wrapper'>
+                        <ul class="song_list">
+                            <li v-for="item in musicList">
+                                <a href="javascript:;" @click="playMusic(item.id)"></a>
+                                <b>{{ item.name }}</b>
+                                <span>
+                                <i v-if="item.mvid!=0" @click="playMV(item.mvid)"></i>
+                            </span>
+                            </li>
+                        </ul>
+                        <img src="images/line.png" class="switch_btn" alt="">
+                    </div>
+                    <!-- 歌曲信息容器 -->
+                    <div class="player_con" :class="{playing:isPlaying}">
+                        <img src="images/player_bar.png" class="play_bar" />
+                        <!-- 黑胶碟片 -->
+                        <img src="images/disc.png" class="disc autoRotate" />
+                        <img :src="musicCover==''?'./images/cover.png':musicCover" class="cover autoRotate" />
+                    </div>
+                    <!-- 评论容器 -->
+                    <div class="comment_wrapper" ref='comment_wrapper'>
+                        <h5 class='title'>热门留言</h5>
+                        <div class='comment_list'>
+                            <dl v-for="item in hotComments">
+                                <dt><img :src="item.user.avatarUrl" alt=""></dt>
+                                <dd class="name">{{ item.nickname}}</dd>
+                                <dd class="detail">{{ item.content }}</dd>
+                            </dl>
+                        </div>
+                        <img src="images/line.png" class="right_line">
+                    </div>
+                </div>
+                <!-- 歌曲播放组件显示 -->
+                <div class="audio_con">
+                    <audio ref='audio' @play="play" @pause="pause" :src="musicUrl" controls autoplay loop class="myaudio"></audio>
+                </div>
+                <!-- MV遮罩层 -->
+                <div class="video_con" v-show="isShow" style="display: none;">
+                    <video :src="mvUrl" controls="controls"></video>
+                    <div class="mask" @click="hide"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 官网提供的 axios 在线地址 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

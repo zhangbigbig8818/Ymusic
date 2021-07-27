@@ -1,0 +1,308 @@
+body,
+ul,
+dl,
+dd {
+  margin: 0px;
+  padding: 0px;
+}
+/* 旋转的动画 */
+@keyframes Rotate {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+/* 旋转的类名 */
+.autoRotate {
+  animation-name: Rotate;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  animation-timing-function: linear;
+  animation-duration: 5s;
+}
+.wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../images/bg.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+/* 主体部分样式 */
+.main {
+  width: 1200px;
+  margin: 100px auto;
+}
+/* 一、左边项目介绍栏样式 */
+.introduce {
+  float: left;
+  width: 350px;
+}
+/* 二、右边音乐播放器区域样式 */
+.play_wrap {
+  float: right;
+  width: 800px;
+  height: 544px;
+  /* 1、顶部区域样式 */
+  /* 2. banner轮播图样式 */
+  /* 3、歌曲展示部分样式 */
+}
+.play_wrap .search_bar {
+  height: 60px;
+  background-color: #f74141;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 11;
+}
+.play_wrap .search_bar .logo {
+  float: left;
+  margin-left: 23px;
+  width: 40px;
+  height: 40px;
+}
+.play_wrap .search_bar .logo img {
+  width: 100%;
+}
+.play_wrap .search_bar .caption h3 {
+  float: left;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 0;
+  padding-right: 200px;
+}
+.play_wrap .search_bar input {
+  margin-right: 23px;
+  width: 296px;
+  height: 34px;
+  border-radius: 17px;
+  border: 0px;
+  background: url("../images/zoom.png") 265px center no-repeat rgba(255, 255, 255, 0.45);
+  text-indent: 15px;
+  outline: none;
+}
+.play_wrap .banner {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-bottom: 10px;
+  border-bottom: 1px solid #3a3838;
+}
+.play_wrap .banner .rotation {
+  width: 50%;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+.play_wrap .center_con {
+  height: 435px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  position: relative;
+}
+.play_wrap .center_con .song_wrapper {
+  width: 200px;
+  height: 435px;
+  box-sizing: border-box;
+  padding: 10px;
+  list-style: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+}
+.play_wrap .center_con .song_wrapper .song_list {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+.play_wrap .center_con .song_wrapper .song_list::-webkit-scrollbar {
+  display: none;
+}
+.play_wrap .center_con .song_wrapper .song_list li {
+  font-size: 12px;
+  color: #333;
+  height: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 580px;
+  padding-left: 10px;
+}
+.play_wrap .center_con .song_wrapper .song_list li:nth-child(odd) {
+  background-color: rgba(240, 240, 240, 0.3);
+}
+.play_wrap .center_con .song_wrapper .song_list li a {
+  display: block;
+  width: 17px;
+  height: 17px;
+  background-image: url("../images/play.png");
+  background-size: 100%;
+  margin-right: 5px;
+  box-sizing: border-box;
+}
+.play_wrap .center_con .song_wrapper .song_list li b {
+  font-weight: normal;
+  width: 122px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.play_wrap .center_con .song_wrapper .song_list li span {
+  width: 23px;
+  height: 17px;
+  margin-right: 50px;
+}
+.play_wrap .center_con .song_wrapper .song_list li span i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: url("../images/table.png") left -48px no-repeat;
+}
+.play_wrap .center_con .song_wrapper .switch_btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.play_wrap .center_con .player_con {
+  width: 400px;
+  height: 435px;
+  position: absolute;
+  left: 200px;
+  top: 0px;
+}
+.play_wrap .center_con .player_con .play_bar {
+  position: absolute;
+  left: 200px;
+  top: -10px;
+  z-index: 10;
+  transform: rotate(-25deg);
+  transform-origin: 12px 12px;
+  transition: 1s;
+}
+.play_wrap .center_con .player_con .disc {
+  position: absolute;
+  left: 73px;
+  top: 60px;
+  z-index: 9;
+}
+.play_wrap .center_con .player_con .cover {
+  position: absolute;
+  left: 125px;
+  top: 112px;
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  z-index: 8;
+}
+.play_wrap .center_con .player_con.playing .disc,
+.play_wrap .center_con .player_con.playing .cover {
+  animation-play-state: running;
+}
+.play_wrap .center_con .play_bar {
+  position: absolute;
+  left: 200px;
+  top: -10px;
+  z-index: 10;
+  transform: rotate(-25deg);
+  transform-origin: 12px 12px;
+  transition: 1s;
+}
+.play_wrap .center_con .player_con.playing .play_bar {
+  transform: rotate(0);
+}
+.play_wrap .center_con .comment_wrapper {
+  width: 180px;
+  height: 435px;
+  list-style: none;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+  padding: 25px 10px;
+}
+.play_wrap .center_con .comment_wrapper .title {
+  position: absolute;
+  top: 0;
+  margin-top: 10px;
+}
+.play_wrap .center_con .comment_wrapper .comment_list {
+  overflow: auto;
+  height: 385px;
+  margin-top: 15px;
+}
+.play_wrap .center_con .comment_wrapper .comment_list::-webkit-scrollbar {
+  display: none;
+}
+.play_wrap .center_con .comment_wrapper .comment_list dl {
+  position: relative;
+  padding-top: 10px;
+  padding-left: 40px;
+  margin-bottom: 20px;
+}
+.play_wrap .center_con .comment_wrapper .comment_list dl dt {
+  position: absolute;
+  left: 4px;
+  top: 10px;
+}
+.play_wrap .center_con .comment_wrapper .comment_list dl dt img {
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+}
+.play_wrap .center_con .comment_wrapper .comment_list dl dd {
+  font-size: 12px;
+}
+.play_wrap .center_con .comment_wrapper .comment_list dl .name {
+  font-weight: 700;
+  color: #333;
+  padding-top: 5px;
+}
+.play_wrap .center_con .comment_wrapper .comment_list dl .detail {
+  color: #666;
+  margin-top: 5px;
+  line-height: 18px;
+}
+.play_wrap .center_con .comment_wrapper .right_line {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.play_wrap .audio_con {
+  height: 50px;
+  background-color: #f1f3f4;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.play_wrap .audio_con .myaudio {
+  width: 800px;
+  height: 40px;
+  margin-top: 5px;
+  outline: none;
+  background-color: #f1f3f4;
+}
+.play_wrap .video_con video {
+  position: fixed;
+  width: 800px;
+  height: 546px;
+  left: 50%;
+  top: 50%;
+  margin-top: -273px;
+  transform: translateX(-50%);
+  z-index: 990;
+}
+.play_wrap .video_con .mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 980;
+  background-color: rgba(0, 0, 0, 0.8);
+}
